@@ -1,0 +1,15 @@
+---
+# tasks file for yauh.mongodb
+- name: Get Mongo apt key
+  shell: apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+
+- name: Add Mongo repository
+  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse' state=present
+
+- name: Install MongoDB package
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - mongodb-org
+
+- name: Fix locale issues in ubuntu
+  lineinfile: line=LC_ALL="en_US.UTF-8" dest=/etc/default/locale state=present
