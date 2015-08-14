@@ -1,0 +1,10 @@
+{% for user in mongo_users %}
+use {{user.database}};
+db.createUser(
+  {
+    "user": "{{user.name}}",
+    "pwd": "{{user.password}}",
+    "roles": {{user.roles}}
+  }
+);
+{% endfor %}

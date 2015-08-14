@@ -1,2 +1,11 @@
 ---
 # defaults file for yauh.mongodb
+mongo_users:
+#  - name: admin
+#    database: admin
+#    password: passw0rd
+#    roles: [{role: "root", db: "admin"},{role: "userAdminAnyDatabase", db: "admin"}]
+  - name: meteor
+    database: meteor
+    password: password
+    roles: [{role: "readWrite", db: "meteor"}]

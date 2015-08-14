@@ -1,15 +1,22 @@
 ---
 # tasks file for yauh.mongodb
-- name: Get Mongo apt key
-  shell: apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+- name: mongo| Import the public key
+  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=7F0CEB10
 
-- name: Add Mongo repository
-  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse' state=present
+- name: mongo | Add repository and reload local package
+  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse' update_cache=yes
 
-- name: Install MongoDB package
-  apt: pkg={{ item }} state=latest update_cache=yes
+- name: Install required packages
+  apt: pkg={{ item }} state=latest cache_valid_time=3600
   with_items:
-    - mongodb-org
+     - build-essential
+     - python-software-properties
+     - python-pip
+     - python-dev
+     - mongodb-org
+
+- name: Install pymongo
+  pip: name=pymongo
 
 - name: Fix locale issues in ubuntu
   lineinfile: line=LC_ALL="en_US.UTF-8" dest=/etc/default/locale state=present
@@ -19,6 +26,14 @@
     src=disable-transparent-hugepages.j2 dest=/etc/init.d/disable-transparent-hugepages
     owner=root group=root mode=755
 
+- include: users.yml
+  when: mongo_users is defined
+
 - name: Enable tph disabling service
   shell: update-rc.d disable-transparent-hugepages defaults
-  notify: restart mongod
+
+- name: Secure Mongodb configuration
+  lineinfile: dest=/etc/mongod.conf regexp="^#?auth" line="auth = true" state=present
+
+- name: MongoDB started
+  service: name=mongod state=restarted enabled=yes
