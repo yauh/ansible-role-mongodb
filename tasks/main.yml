@@ -27,7 +27,7 @@
     owner=root group=root mode=755
 
 - include: users.yml
-  when: mongo_users is defined
+  when: mongodb_users is defined
 
 - name: Enable tph disabling service
   shell: update-rc.d disable-transparent-hugepages defaults
