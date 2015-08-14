@@ -46,4 +46,4 @@
     login_port: "{{ mongodb_conf_port }}"
   with_items:
     - "{{ mongodb_users }}"
-  when: mongodb_users
+  when: mongodb_users is defined

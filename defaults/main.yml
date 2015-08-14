@@ -1,6 +1,7 @@
 ---
 # defaults file for yauh.mongodb
-mongo_users:
+mongodb_conf_port: 27017
+mongodb_users:
 #  - name: admin
 #    database: admin
 #    password: passw0rd
