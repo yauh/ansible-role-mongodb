@@ -32,8 +32,5 @@
 - name: Enable tph disabling service
   shell: update-rc.d disable-transparent-hugepages defaults
 
-- name: Secure Mongodb configuration
-  lineinfile: dest=/etc/mongod.conf regexp="^#?auth" line="auth = true" state=present
-
 - name: MongoDB started
   service: name=mongod state=restarted enabled=yes

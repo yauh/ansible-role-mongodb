@@ -49,3 +49,7 @@
   with_items:
     - "{{ mongodb_users }}"
   when: mongodb_users is defined
+
+- name: Secure Mongodb configuration
+  lineinfile: dest=/etc/mongod.conf regexp="^#?auth" line="auth = true" state=present
+  notify: restart mongod
