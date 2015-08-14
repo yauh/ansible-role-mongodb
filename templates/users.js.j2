@@ -1,4 +1,4 @@
-{% for user in mongo_users %}
+{% for user in mongodb_users %}
 use {{user.database}};
 db.createUser(
   {
