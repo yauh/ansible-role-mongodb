@@ -1,6 +1,11 @@
 ---
 # defaults file for yauh.mongodb
 mongodb_conf_port: 27017
+mongodb_user_admin_name: admin
+mongodb_user_admin_password: drowssap
+mongodb_root_admin_name: root
+mongodb_root_admin_password: drowssap
+#mongodb_conf_replSet: rs0
 mongodb_users:
 #  - name: admin
 #    database: admin
@@ -8,5 +13,5 @@ mongodb_users:
 #    roles: [{role: "root", db: "admin"},{role: "userAdminAnyDatabase", db: "admin"}]
   - name: meteor
     database: meteor
-    password: password
+    password: drowssap
     roles: [{role: "readWrite", db: "meteor"}]

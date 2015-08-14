@@ -19,6 +19,7 @@
       password: "{{ mongodb_user_admin_password }}",
       roles: "userAdminAnyDatabase"
       }
+  when: mongodb_user_admin_name is defined
 
 - name: create siteRootAdmin
   mongodb_user:
@@ -33,6 +34,7 @@
       password: "{{ mongodb_root_admin_password }}",
       roles: "root"
       }
+  when: mongodb_root_admin_name is defined
 
 - name: create normal users
   mongodb_user:
@@ -40,7 +42,7 @@
     name: "{{ item.name }}"
     password: "{{ item.password }}"
     roles: "{{ item.roles }}"
-    replica_set: "{{ mongodb_conf_replSet }}"
+#    replica_set: "{{ mongodb_conf_replSet }}"
     login_user: "{{ mongodb_user_admin_name }}"
     login_password: "{{ mongodb_user_admin_password }}"
     login_port: "{{ mongodb_conf_port }}"
