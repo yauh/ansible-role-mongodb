@@ -6,12 +6,12 @@ mongodb_users:
   - name: admin
     database: admin
     password: drowssap
-    roles: [{role: "userAdminAnyDatabase", db: "admin"}]
+    roles: "userAdminAnyDatabase"
   - name: admin
     database: root
     password: drowssap
-    roles: [{role: "root", db: "admin"}]
+    roles: "root"
   - name: meteor
     database: meteor
     password: drowssap
-    roles: [{role: "readWrite", db: "meteor"}]
+    roles: "readWrite"
