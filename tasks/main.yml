@@ -26,6 +26,12 @@
     src=disable-transparent-hugepages.j2 dest=/etc/init.d/disable-transparent-hugepages
     owner=root group=root mode=755
 
+- name: Adjust bind IP
+  lineinfile:
+    dest=/etc/mongod.conf
+    regexp='^bind_ip.*'
+    line="bind_ip = {{ mongodb_bind_ip }}"
+
 - include: users.yml
   when: mongodb_users is defined
 

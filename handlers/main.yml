@@ -2,3 +2,6 @@
 # handlers file for yauh.mongodb
 - name: restart mongod
   service: name=mongod state=restarted
+
+- name: reload mongod
+  service: name=mongod state=reloaded
