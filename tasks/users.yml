@@ -3,7 +3,8 @@
 - name: Create MongoDB users
   mongodb_user: database={{item.database}} name={{item.name}} password={{item.password}} roles={{item.roles}} state=present
   with_items: mongodb_users
-
+  ignore_errors: yes
+  
 - name: Secure Mongodb configuration
   lineinfile: dest=/etc/mongod.conf regexp="^#?auth" line="auth = true" state=present
   notify: restart mongod
