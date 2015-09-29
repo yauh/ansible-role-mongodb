@@ -35,6 +35,7 @@
 
 - include: users.yml
   when: mongodb_users is defined
+  ignore_errors: yes
 
 - name: Enable tph disabling service
   shell: update-rc.d disable-transparent-hugepages defaults
