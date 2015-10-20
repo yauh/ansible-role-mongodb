@@ -37,8 +37,8 @@
 - include: users.yml
   when: mongodb_users is defined
 
-- include: replicaset.yml
-  when: mongodb_replicaset is defined
+#- include: replicaset.yml
+#  when: mongodb_replicaset is defined
 
 - name: Enable tph disabling service
   shell: update-rc.d disable-transparent-hugepages defaults
