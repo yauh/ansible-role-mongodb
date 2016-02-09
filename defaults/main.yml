@@ -1,6 +1,6 @@
 ---
 # defaults file for yauh.mongodb
-mongodb_conf_port: 27017
+mongodb_port: 27017
 mongodb_bind_ip: 0.0.0.0
 mongodb_users:
   - name: admin
