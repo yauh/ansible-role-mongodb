@@ -31,8 +31,8 @@
 - name: Adjust bind IP
   lineinfile:
     dest=/etc/mongod.conf
-    regexp='^bind_ip.*'
-    line="bind_ip = {{ mongodb_bind_ip }}"
+    regexp='(.*bindIp:)'
+    line="\1 {{ mongodb_bind_ip }}"
 
 - include: users.yml
   when: mongodb_users is defined
