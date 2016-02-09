@@ -33,6 +33,7 @@
     dest=/etc/mongod.conf
     regexp='(.*bindIp:)'
     line="\1 {{ mongodb_bind_ip }}"
+    backrefs=yes
 
 - include: users.yml
   when: mongodb_users is defined
